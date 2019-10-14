@@ -4,7 +4,6 @@ class Node:
     def __init__(self, value=None, next=None, prev=None):
         self.value = value
         self.next = next
-        self.prev = prev
 
 
 class Queue:
@@ -12,7 +11,6 @@ class Queue:
         self.size = 0
         # storage should be initialized with a single Node that contains neither value nor next
         self.storage = Node()
-        self.first = Node()
 
     # add an item to the back of the queue
     def enqueue(self, value):
@@ -22,11 +20,8 @@ class Queue:
         # If there's no 'value' for the first item in the queue, we're dealing with an empty cueue
         if self.storage.value is None:
             self.storage = new_node
-            self.first = new_node
 
         else:
-            # Make sure the current head node knows what's going to be added after him.
-            self.storage.prev = new_node
             # Set new node's poiner to the current head node
             new_node.next = self.storage
             # make new node be at the end of the queue
@@ -41,14 +36,15 @@ class Queue:
         if self.size is 0:
             return None
 
-        # If que is only one item, we should remove the value and make the queue have an empty Node
-        elif self.size is 1 and self.storage.next is None:
-            self.storage = Node()
-
-        # If self.size > 1, we should set the second value to be the first thereby moving up the queue
         else:
-            print(self.first.next)
-            
+            # We need to loop over the queue to reach the first element (where next == none)
+
+            # Then, we need to set value to None and storage to none
+
+            # Decrement one from self.size
+            self.size -= 1
+            # Return dequeued value
+
 
     # Returns num of items in queue
     def len(self):
@@ -56,8 +52,11 @@ class Queue:
 
 q = Queue()
 q.enqueue(7)
+print(q.size)
 q.enqueue(10)
+print(q.size)
 q.enqueue(14)
+print(q.size)
 # print(q.storage.value)
 # print(f"Next: {q.storage.next}")
 # q.enqueue(10)
@@ -68,5 +67,5 @@ q.enqueue(14)
 # print(f"Next: {q.storage.next.value}")
 
 q.dequeue()
-
+print(q.size)
 
