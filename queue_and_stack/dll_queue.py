@@ -38,12 +38,23 @@ class Queue:
 
         else:
             # We need to loop over the queue to reach the first element (where next == none)
+            temp_node = self.storage
+
+            while temp_node.next.value == None:
+                temp_node = temp_node.next
+
+            # Capture value to return it later
+            return_value = temp_node.value
 
             # Then, we need to set value to None and storage to none
+            temp_node.value = None
+            temp_node.next = None
+
 
             # Decrement one from self.size
             self.size -= 1
             # Return dequeued value
+            print(return_value)
 
 
     # Returns num of items in queue
@@ -52,20 +63,15 @@ class Queue:
 
 q = Queue()
 q.enqueue(7)
-print(q.size)
+# print(q.size)
 q.enqueue(10)
-print(q.size)
+# print(q.size)
 q.enqueue(14)
-print(q.size)
-# print(q.storage.value)
-# print(f"Next: {q.storage.next}")
-# q.enqueue(10)
-# print(q.storage.value)
-# print(f"Next: {q.storage.next.value}")
-# q.enqueue(14)
-# print(q.storage.value)
-# print(f"Next: {q.storage.next.value}")
+# print(q.size)
+
 
 q.dequeue()
-print(q.size)
+q.dequeue()
+q.dequeue()
+
 
