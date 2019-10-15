@@ -11,12 +11,10 @@ class LRUCache:
     def __init__(self, limit=10):
         # Max number of nodes
         self.limit = limit
-        # Current number of nodes
-        self.size = 0
         # DLL
-        self.list = DoublyLinkedList()
-        # Storage {}
-        self.storage = {}
+        self.storage = DoublyLinkedList()
+        # Cache {}
+        self.cache = {}
 
     """
     Retrieves the value associated with the given key. Also
@@ -26,17 +24,17 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        # if key not in self.storage
+        # if key not in self.cache
             # return None
 
-        # return_val = self.storage.key
+        # return_val = self.cache.key
         # Move node to front
 
         
         # return return_val
+        pass
 
-    """
-    Adds the given key-value pair to the cache. The newly-
+    """Adds the given key-value pair to the cache. The newly-
     added pair should be considered the most-recently used
     entry in the cache. If the cache is already at max capacity
     before this entry is added, then the oldest entry in the
@@ -46,18 +44,31 @@ class LRUCache:
     the newly-specified value.
     """
     def set(self, key, value):
-        # We're creating a new node
+        # If the key is already in the cache, we'll need to update it
+        if key in self.cache:
+            # Create a new 'node', which'll be passed to the DLL
+            new_node = self.cache[key]
+            # Set it's value attribute to be a tuple containing the key and value so it satisfies
+            # The param requirements of Node()
+            new_node.value = (key, value)
+            # We should move the node in the DLL to the front, since we've requested it last.
+            self.storage.move_to_front(new_node)
+            
 
-        # IF self.size > self.limit
-            # we have to remove the item at the tail
-            # Add node to head
+        elif self.storage.length == self.limit:
+            # Remove Key-value pair from cache, targetting the value that is current at tail
+            del self.cache[self.storage.tail.value[0]]
+            # Remove value from tail to ensure that the old value is removed and size is once again equal to limit
+            self.storage.remove_from_tail()
         
-        # if key in self.storage:
-            # Remove Key from self.storage
-            # add node to HEAD
-            # set self.storage.key to new value
+        self.storage.add_to_head((key, value))
+        self.cache[key] = self.storage.head
 
-        # else (if we're below the limit and the new key is not yet in the cache)
-            # Add node to HEAD
-            # set self.storage.key to new value
-        pass
+lru = LRUCache(2)
+lru.set("item 1", "a")
+lru.set("item 2", "b")
+print(lru.cache)
+lru.set("item 1", "a")
+print(lru.cache)
+lru.set("item 3", "c")
+print(lru.cache)
