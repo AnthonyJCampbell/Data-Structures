@@ -69,13 +69,13 @@ class LRUCache:
         # Set cache at the designated key to have the value of the object
         self.cache[key] = self.storage.head
 
-lru = LRUCache(2)
-lru.set("item 1", "a")
-lru.set("item 2", "b")
-print(f"{lru.cache}\n")
-lru.set("item 1", "a")
-print(f"{lru.cache}\n")
-lru.set("item 3", "c")
-print(f"{lru.cache}\n")
-print(lru.get("item 4"))
-print(lru.get("item 3"))
+# lru = LRUCache(2)
+# lru.set("item 1", "a")
+# lru.set("item 2", "b")
+# print(f"{lru.cache}\n")
+# lru.set("item 1", "a")
+# print(f"{lru.cache}\n")
+# lru.set("item 3", "c")
+# print(f"{lru.cache}\n")
+# print(lru.get("item 4"))
+# print(lru.get("item 3"))
