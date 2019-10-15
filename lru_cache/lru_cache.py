@@ -24,15 +24,18 @@ class LRUCache:
     key-value pair doesn't exist in the cache.
     """
     def get(self, key):
-        # if key not in self.cache
-            # return None
+        if key not in self.cache:
+            return None
 
-        # return_val = self.cache.key
-        # Move node to front
+        # return_val itself is now the object associated with the key in cache
+        return_val = self.cache[key]
 
+        # Move value to front of the storage
+        self.storage.move_to_front(return_val)
+
+        # Return the value of the K-V pair location in the 'value' of the Object in cache
+        return return_val.value[1]
         
-        # return return_val
-        pass
 
     """Adds the given key-value pair to the cache. The newly-
     added pair should be considered the most-recently used
@@ -55,20 +58,24 @@ class LRUCache:
             self.storage.move_to_front(new_node)
             
 
-        elif self.storage.length == self.limit:
+        elif self.storage.length >= self.limit:
             # Remove Key-value pair from cache, targetting the value that is current at tail
             del self.cache[self.storage.tail.value[0]]
             # Remove value from tail to ensure that the old value is removed and size is once again equal to limit
             self.storage.remove_from_tail()
         
+        # Add new node to the head of storage by passing in (key, value) as value param for Node()
         self.storage.add_to_head((key, value))
+        # Set cache at the designated key to have the value of the object
         self.cache[key] = self.storage.head
 
 lru = LRUCache(2)
 lru.set("item 1", "a")
 lru.set("item 2", "b")
-print(lru.cache)
+print(f"{lru.cache}\n")
 lru.set("item 1", "a")
-print(lru.cache)
+print(f"{lru.cache}\n")
 lru.set("item 3", "c")
-print(lru.cache)
+print(f"{lru.cache}\n")
+print(lru.get("item 4"))
+print(lru.get("item 3"))
