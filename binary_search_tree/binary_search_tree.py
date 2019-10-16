@@ -103,19 +103,46 @@ class BinarySearchTree:
 
 
 
+    #  performs a traversal of _every_ node in the tree, 
+    #  executing the passed-in callback function on each tree node value. 
+    # You may use a recursive or iterative approach
+    def for_each(self, cb):
+        # Traverse all nodes in the tree
+
+        # execute callback on self
+
+        # If self.left exists
+            # Recursive call with node.left passed as node
+
+        # if self.right exists
+            # Recursive call with node.right passed as node
+
+        # if self.right is none and self.left is none
+            # return
+
+
+
+
+
 bst = BinarySearchTree(5)
-bst.insert(30)
-print(bst.get_max())
-bst.insert(300)
-bst.insert(3)
-print(bst.get_max())
+arr = []
+cb = lambda x: arr.append(x)
 
-    # #  performs a traversal of _every_ node in the tree, 
-    # #  executing the passed-in callback function on each tree node value. 
-    # # You may use a recursive or iterative approach
-    # def for_each(self, cb):
-    #     pass
+v1 = 2
+v2 = 3
+v3 = 8
+v4 = 30
+v5 = 30
 
+bst.insert(v1)
+bst.insert(v2)
+bst.insert(v3)
+bst.insert(v4)
+bst.insert(v5)
+
+bst.for_each(cb)
+
+print(arr)
 
 
 
