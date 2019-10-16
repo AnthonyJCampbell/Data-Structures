@@ -78,16 +78,34 @@ class BinarySearchTree:
 
 
 
-bst = BinarySearchTree(5)
-bst.insert(2)
-bst.insert(3)
-bst.insert(7)
-print(bst.contains(7))
-print(bst.contains(8))
 
-    # # Return the maximum value found in the tree
-    # def get_max(self):
-    #     pass
+    # Return the maximum value found in the tree
+    def get_max(self):
+        # Move over every value in the tree
+        
+        def recursive_get_max(node):
+            # Move over the tree
+            # Normally, the largest value in a BST will end up as the right-most leaf
+
+            # If node.right is None, this means that the current value is the largest we can find
+                # Therefore, we should return node.value
+
+            # else
+                # Rerun function with node.right as node
+        
+        
+        return recursive_get_max(self)
+
+
+
+
+
+bst = BinarySearchTree(5)
+bst.insert(30)
+print(bst.get_max())
+bst.insert(300)
+bst.insert(3)
+print(bst.get_max())
 
     # #  performs a traversal of _every_ node in the tree, 
     # #  executing the passed-in callback function on each tree node value. 
