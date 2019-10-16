@@ -107,19 +107,32 @@ class BinarySearchTree:
     #  executing the passed-in callback function on each tree node value. 
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        # Traverse all nodes in the tree
 
-        # execute callback on self
+        def recursive_for_each(node, cb):
+            # Traverse all nodes in the tree
 
-        # If self.left exists
-            # Recursive call with node.left passed as node
+            # # execute callback on self
+            cb(node.value)
 
-        # if self.right exists
-            # Recursive call with node.right passed as node
+            # if self.right is none and self.left is none, we've reached a dead end and should just return
+            if node.right is None and node.left is None:
+                return
 
-        # if self.right is none and self.left is none
-            # return
+            # If self.left exists
+            if node.left is None:
+                # Recursive call with node.left passed as node
+                recursive_for_each(node.right, cb)
 
+            # # if node.right exists
+            if node.right is None:
+                # Recursive call with node.right passed as node
+                recursive_for_each(node.left, cb)
+
+            if node.left is not None and node.right is not None:
+                recursive_for_each(node.left, cb)
+                recursive_for_each(node.right, cb)
+
+        return recursive_for_each(self, cb)
 
 
 
@@ -132,7 +145,7 @@ v1 = 2
 v2 = 3
 v3 = 8
 v4 = 30
-v5 = 30
+v5 = 300
 
 bst.insert(v1)
 bst.insert(v2)
