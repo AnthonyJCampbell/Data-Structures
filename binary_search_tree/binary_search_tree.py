@@ -13,9 +13,8 @@ class BinarySearchTree:
     # We'll need to traverse to find the spot to insert
     def insert(self, new_value):
 
-
         # Create a recursive function that is able to iterate over the 'left' and 'right' nodes
-        def recur(node, new_value):
+        def recursive_insert(node, new_value):
             # If the new value is smaller than the value of the current node, we need to either move
             # left (if there's some value there), or insert the value to the left if we're at a leaf.
             if new_value < node.value:
@@ -26,7 +25,7 @@ class BinarySearchTree:
                 
                 # Rerun through the function using the child node on the left
                 else:
-                    recur(node.left, new_value)
+                    recursive_insert(node.left, new_value)
             
             # If the new value >= the current value, we should move over to the right.
             else:
@@ -35,24 +34,43 @@ class BinarySearchTree:
                     return
 
                 else:
-                    recur(node.right, new_value)
+                    recursive_insert(node.right, new_value)
 
-        return recur(self, new_value)
+        return recursive_insert(self, new_value)
+
+
+    # `contains` searches the binary search tree for the input value, 
+    # returning a boolean indicating whether the value exists in the tree or not.
+    # Start from root and move down. Stop at the first instance of a value
+    # If the traversal reaches a node without children, we know the value is not in the tree
+    def contains(self, target):
+        # We move through the tree.
+
+        # With each value, we check if the target is smaller than self.value or larger
+        
+        # If self.value == target, we've found it and should return it
+
+        # If target is smaller than self.value
+            # If self.left is None, it is not in the tree and 
+                # should return False
+            # else
+                # rerun function on self.left
+
+        # else (i.e. if target is equal or larger than self.value):
+            # if self.right is None, it is not in the tree and
+                # Should return False
+            # else
+            
+
+
+
 
 bst = BinarySearchTree(5)
 bst.insert(2)
 bst.insert(3)
 bst.insert(7)
-bst.insert(6)
-print(bst.left.right.value)
-print(bst.right.left.value)
-
-    # # `contains` searches the binary search tree for the input value, 
-    # # returning a boolean indicating whether the value exists in the tree or not.
-    # # Start from root and move down. Stop at the first instance of a value
-    # # If the traversal reaches a node without children, we know the value is not in the tree
-    # def contains(self, target):
-    #     pass
+print(bst.contains(7))
+print(bst.contains(8))
 
     # # Return the maximum value found in the tree
     # def get_max(self):
