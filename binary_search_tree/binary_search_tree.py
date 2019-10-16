@@ -88,10 +88,13 @@ class BinarySearchTree:
             # Normally, the largest value in a BST will end up as the right-most leaf
 
             # If node.right is None, this means that the current value is the largest we can find
+            if node.right is None:
                 # Therefore, we should return node.value
+                return node.value
 
-            # else
+            else:
                 # Rerun function with node.right as node
+                return recursive_get_max(node.right)
         
         
         return recursive_get_max(self)
