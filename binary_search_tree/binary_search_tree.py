@@ -44,22 +44,35 @@ class BinarySearchTree:
     # Start from root and move down. Stop at the first instance of a value
     # If the traversal reaches a node without children, we know the value is not in the tree
     def contains(self, target):
-        # We move through the tree.
 
-        # With each value, we check if the target is smaller than self.value or larger
-        
-        # If self.value == target, we've found it and should return it
+        def recursive_contains(node, target):
+            # print(f"target is {target}, current value is {node.value}")
+            # If self.value == target, we've found it and should return it
+            if node.value == target:
+                return True
 
-        # If target is smaller than self.value
-            # If self.left is None, it is not in the tree and 
-                # should return False
-            # else
-                # rerun function on self.left
+            # With each value, we check if the target is smaller than self.value or larger
+            # If target is smaller than self.value
+            elif target < node.value:
+                # If self.left is None, it is not in the tree and should return False
+                if node.left is None:
+                    return False
+                
+                # Otherwise we should try again with the node on the left
+                else:
+                    return recursive_contains(node.left, target)
 
-        # else (i.e. if target is equal or larger than self.value):
-            # if self.right is None, it is not in the tree and
-                # Should return False
-            # else
+            # if target is equal or larger than self.value
+            else:
+                # if self.right is None, it is not in the tree and should return False
+                if node.right is None:
+                    return False
+
+                # Otherwise rerun with the node on the right
+                else:
+                    return recursive_contains(node.right, target)
+
+        return recursive_contains(self, target)
             
 
 
