@@ -10,12 +10,16 @@ class BinarySearchTree:
         self.left = None
         self.right = None
 
-    # Insert the given value into the tree
+    # `insert` adds the input value to the binary search tree, 
+    # adhering to the rules of the ordering of elements in a binary search tree.
+    # We'll need to traverse to find the spot to insert
     def insert(self, value):
         pass
 
-    # Return True if the tree contains the value
-    # False if it does not
+    # `contains` searches the binary search tree for the input value, 
+    # returning a boolean indicating whether the value exists in the tree or not.
+    # Start from root and move down. Stop at the first instance of a value
+    # If the traversal reaches a node without children, we know the value is not in the tree
     def contains(self, target):
         pass
 
@@ -23,10 +27,20 @@ class BinarySearchTree:
     def get_max(self):
         pass
 
-    # Call the function `cb` on the value of each node
+    #  performs a traversal of _every_ node in the tree, 
+    #  executing the passed-in callback function on each tree node value. 
     # You may use a recursive or iterative approach
     def for_each(self, cb):
         pass
+
+
+
+
+
+
+
+
+
 
     # DAY 2 Project -----------------------
 
@@ -36,7 +50,7 @@ class BinarySearchTree:
         pass
 
     # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
+    # in an iterativ e breadth first traversal
     def bft_print(self, node):
         pass
 
