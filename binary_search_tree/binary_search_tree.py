@@ -194,7 +194,22 @@ class BinarySearchTree:
     # Print the value of every node, starting with the given node,
     # in an iterative breadth first traversal
     def bft_print(self, node):
-        pass
+        q = []
+
+        q.append(node)
+
+        while len(q):
+            current_node = q.pop(0)
+            
+            if current_node.left:
+                q.append(current_node.left)
+
+            if current_node.right:
+                q.append(current_node.right)
+
+            print(current_node.value)
+
+
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
@@ -232,11 +247,6 @@ class BinarySearchTree:
 
 
 
-
-
-
-
-
         # **********************************************
         # * Solution created from algo found on Google *
         # **********************************************
@@ -253,16 +263,16 @@ class BinarySearchTree:
                 stack.push(stored_node.right)
                 
 
-# bst = BinarySearchTree(1)
-# bst.insert(8)
-# bst.insert(5)
-# bst.insert(7)
-# bst.insert(6)
-# bst.insert(3)
-# bst.insert(4)
-# bst.insert(2)
+bst = BinarySearchTree(1)
+bst.insert(8)
+bst.insert(5)
+bst.insert(7)
+bst.insert(6)
+bst.insert(3)
+bst.insert(4)
+bst.insert(2)
 
-# bst.dft_print(bst)
+bst.bft_print(bst)
 
 
     # # STRETCH Goals -------------------------
