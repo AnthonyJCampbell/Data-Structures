@@ -200,45 +200,69 @@ class BinarySearchTree:
     # in an iterative depth first traversal
     def dft_print(self, node):
 
-        # Store starting node as current value
-        current = node
-        # Initialize a stack
-        stack = Stack()
-        # Store the size of the tree to check against in the REPL
-        tree_size = get_max(node)
+        # **********************************************
+        # ************ Incomplete solution *************
+        # **********************************************
 
-        # Initiate a while loop that repeats while the finishing conditions do not match: 
-        # current.left is not None 
-        # current.right is not None
-        # and current.value is not equal to tree_size
+        # # Store starting node as current value
+        # current = node
+        # # Initialize a stack
+        # stack = Stack()
+    
+        # # Initiate a loop
+        # while True:
+        #     if current is not None:
+        #         # print value
+        #         print(current.value)
+        #         # push to stack
+        #         stack.push(current)
+        #         # set current to current.left
+        #         current = current.left
             
-            # if current.value is not None:
-                # print value
-                # push to stack
-                # set current to current.left
+        #     elif current is None:
+        #         print('we here')
+        #         # pop item from stack and set current to popped_item.right
+        #         current = stack.pop().right
 
-            # elif current is None and current.value is not equal to tree_size
-                # store popped item
-                # current = popped_item.right
+        #     # Else, we've finished traversing through the tree
+        #     else:
+        #         # print value
+        #         print(current.value)
+        #         break
 
-        # If current.left and current.right are None + current.value == tree_size, we've reached the end
 
-        # We should print the final value
 
-        # return
-        
-        pass
 
-bst = BinarySearchTree(1)
-bst.insert(8)
-bst.insert(5)
-bst.insert(7)
-bst.insert(6)
-bst.insert(3)
-bst.insert(4)
-bst.insert(2)
 
-bst.dft_print(bst)
+
+
+
+        # **********************************************
+        # * Solution created from algo found on Google *
+        # **********************************************
+
+        stack = Stack()
+        stack.push(node)
+
+        while stack.size > 0:
+            stored_node = stack.pop()
+            print(stored_node.value)
+            if stored_node.left is not None:
+                stack.push(stored_node.left)
+            if stored_node.right is not None:
+                stack.push(stored_node.right)
+                
+
+# bst = BinarySearchTree(1)
+# bst.insert(8)
+# bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
+
+# bst.dft_print(bst)
 
 
     # # STRETCH Goals -------------------------
