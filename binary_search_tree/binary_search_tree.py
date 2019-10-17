@@ -159,9 +159,12 @@ class BinarySearchTree:
             # Add value to holder
             holder.append(node.value)
 
-            # if node.right is None and node.left is None
-            if node.right is None and node.left is None:
-                return
+            # if node.right is not None and node.left is not None, should rerun with both children nodes
+            if node.right is not None and node.left is not None:
+                # rerun function with node.right
+                recursive_in_order_find(node.right)
+                # rerun function with node.left
+                recursive_in_order_find(node.left)
 
             # if node.right is None and node.left is not None
             if node.right is None and node.left is not None:
@@ -174,10 +177,7 @@ class BinarySearchTree:
                 recursive_in_order_find(node.right)
 
             else:
-                # rerun function with node.right
-                recursive_in_order_find(node.right)
-                # rerun function with node.left
-                recursive_in_order_find(node.left)
+                return
         
         
         # Call the recursive function with the root node
@@ -201,16 +201,16 @@ class BinarySearchTree:
     def dft_print(self, node):
         pass
 
-bst = BinarySearchTree(1)
-bst.insert(8)
-bst.insert(5)
+# bst = BinarySearchTree(1)
+# bst.insert(8)
+# bst.insert(5)
 # bst.insert(7)
 # bst.insert(6)
 # bst.insert(3)
 # bst.insert(4)
 # bst.insert(2)
 
-bst.in_order_print(bst)
+# bst.in_order_print(bst)
 
 
     # # STRETCH Goals -------------------------
