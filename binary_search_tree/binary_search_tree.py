@@ -137,25 +137,6 @@ class BinarySearchTree:
 
 
 
-bst = BinarySearchTree(5)
-arr = []
-cb = lambda x: arr.append(x)
-
-v1 = 2
-v2 = 3
-v3 = 8
-v4 = 30
-v5 = 300
-
-bst.insert(v1)
-bst.insert(v2)
-bst.insert(v3)
-bst.insert(v4)
-bst.insert(v5)
-
-bst.for_each(cb)
-
-print(arr)
 
 
 
@@ -165,22 +146,72 @@ print(arr)
 
 
 
-    # # DAY 2 Project -----------------------
+    # DAY 2 Project -----------------------
 
-    # # Print all the values in order from low to high
-    # # Hint:  Use a recursive, depth first traversal
-    # def in_order_print(self, node):
-    #     pass
+    # Print all the values in order from low to high
+    # Hint:  Use a recursive, depth first traversal
+    def in_order_print(self, node):
+        # Declare a holder list where all values can be stored as we encounter them
+        holder = []
+        
+        # Recursive function
+        def recursive_in_order_find(node):
+            # Add value to holder
+            holder.append(node.value)
 
-    # # Print the value of every node, starting with the given node,
-    # # in an iterativ e breadth first traversal
-    # def bft_print(self, node):
-    #     pass
+            # if node.right is None and node.left is None
+            if node.right is None and node.left is None:
+                return
 
-    # # Print the value of every node, starting with the given node,
-    # # in an iterative depth first traversal
-    # def dft_print(self, node):
-    #     pass
+            # if node.right is None and node.left is not None
+            if node.right is None and node.left is not None:
+                # rerun function with node.left
+                recursive_in_order_find(node.left)
+
+            # if node.right is not None and node.left is None
+            if node.right is not None and node.left is None:
+                # rerun function with node.right
+                recursive_in_order_find(node.right)
+
+            else:
+                # rerun function with node.right
+                recursive_in_order_find(node.right)
+                # rerun function with node.left
+                recursive_in_order_find(node.left)
+        
+        
+        # Call the recursive function with the root node
+        recursive_in_order_find(node)
+
+    
+        # Take the holder list (which by now contains all values in the tree) and sort them
+        holder.sort()
+
+        # Loop over the values in the tree and print them in order
+        for values in holder:
+            print(values)
+
+    # Print the value of every node, starting with the given node,
+    # in an iterativ e breadth first traversal
+    def bft_print(self, node):
+        pass
+
+    # Print the value of every node, starting with the given node,
+    # in an iterative depth first traversal
+    def dft_print(self, node):
+        pass
+
+bst = BinarySearchTree(1)
+bst.insert(8)
+bst.insert(5)
+# bst.insert(7)
+# bst.insert(6)
+# bst.insert(3)
+# bst.insert(4)
+# bst.insert(2)
+
+bst.in_order_print(bst)
+
 
     # # STRETCH Goals -------------------------
     # # Note: Research may be required
